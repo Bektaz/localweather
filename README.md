@@ -1,2 +1,2 @@
 # localweather
-Local Weather Application project
+This project was done by using HTML, CSS, Bootstrap and Angular JS MVC framework.
