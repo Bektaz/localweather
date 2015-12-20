@@ -1,2 +1,2 @@
 # localweather
-Repo about local weather application project
+Local Weather Application project
