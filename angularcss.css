@@ -14,7 +14,7 @@
 }
 /*classes below will be added/removed with the help of ng-class directive*/
 .foggy{  
-  background: url(http://s8.postimg.org/5ayrl9ao5/mistyweather.jpg) no-repeat center center fixed; 
+  background: url(img/mistyweather.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -49,7 +49,7 @@
   background-size: cover;
 }
 .clear{
-  background: url(http://s23.postimg.org/py36svbij/clear.jpg) no-repeat center center fixed; 
+  background: url(img/clear.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
