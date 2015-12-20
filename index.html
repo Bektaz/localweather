@@ -1,0 +1,116 @@
+<!DOCTYPE>
+
+<html ng-app='weathApp'>
+	<head>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+                <link rel="stylesheet" href="angularcss.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="https://code.angularjs.org/1.4.8/angular.min.js"></script>
+        <script src="https://code.angularjs.org/1.4.8/angular-resource.min.js"></script>
+		<script src="https://code.angularjs.org/1.4.8/angular-route.min.js"></script>
+	</head>
+	<body><!--main view for wathApp module-->	
+<!--main view for wathApp module-->	
+<div ng-app='weathApp' class='container-fluid'>
+    <!--the view area for the 'maincontroller' controller-->	
+    <div ng-controller='maincontroller'>
+        <!--here the value of weathstate variable will be retrieved from js file and it is used for expressions. Depending on the value of the weathstate different classes will be added to current div. This functionality is implemented with ng-class directive-->	
+        <div class='row main' ng-class='{"foggy": weathstate==="fog", "rainy": weathstate==="rain", "snowy": weathstate==="snow", "cloudy": weathstate==="cloud",  "dusty": weathstate==="dust", "clear": weathstate==="clear"}'>
+          <div class="col-md-6 col-md-offset-3 col-xs-6 col-xs-offset-3 text-center" ng-cloak>
+                <div class="col-md-12 form-group">  
+                    <p id='nameofapp'>Local Weather App</p>
+                    <!--interpolating data from json format-->	
+                    <p id='nameofcity'>{{weatherResult.current_observation.display_location.full}}</p> <br>
+                    <p id='weathconitpar'>
+                      <!--interpolating data from json format and turning it into readable date format-->	
+                      <font>{{weatherResult.current_observation.local_epoch*1000 | date:'EEE, MMM d'}}</font><br>  
+                      <img src="{{weatherResult.current_observation.icon_url}}" class="img-rounded">
+                      {{weatherResult.current_observation.weather}}, <span ng-if='isButPres===true'>
+                      <!--interpolating data from json format and showing/deleting the content of span depending on isButPres boolean var value. This functionality is implemented with ng-if directive-->	
+                      {{weatherResult.current_observation.temp_c}}&deg;C</span><span ng-if='isButPres===false'>{{weatherResult.current_observation.temp_f}}&deg;F</span>           
+                    </p>
+                  <!--ng-click is the same as onclick-->	
+                  <button class='btn btn-primary' ng-click='toggleBut()'><span class='forecastweathpar' ng-if='isButPres===true'>Fahrenheit</span><span class='forecastweathpar' ng-if='isButPres===false'>Celsius</span></button>
+                  <hr>
+                </div>
+                <!--here another 3 days forecasts created and applied just the same techniiques as described above-->	
+                <div class="col-md-12 qwe form-group">
+                    <div class='col-md-4 forecastdivs'>
+                      <p class='forecastweathpar'>
+                        <font>{{weatherResult.forecast.simpleforecast.forecastday[1].date.epoch*1000 | date:'EEE, MMM d'}}</font><br>  
+                        <img src="{{weatherResult.forecast.simpleforecast.forecastday[1].icon_url}}" class="img-rounded"> {{weatherResult.forecast.simpleforecast.forecastday[1].conditions}}<br> HI Temp: <span ng-if='isButPres===true'>{{weatherResult.forecast.simpleforecast.forecastday[1].high.celsius}}&deg;C</span><span ng-if='isButPres===false'>{{weatherResult.forecast.simpleforecast.forecastday[1].high.fahrenheit}}&deg;F</span><br>
+                        LOW Temp: <span ng-if='isButPres===true'>{{weatherResult.forecast.simpleforecast.forecastday[1].low.celsius}}&deg;C</span><span ng-if='isButPres===false'>{{weatherResult.forecast.simpleforecast.forecastday[1].low.fahrenheit}}&deg;F</span>
+                      </p>
+                    </div>
+                    <div class='col-md-4 forecastdivs'>
+                      <p class='forecastweathpar'>
+                        <font>{{weatherResult.forecast.simpleforecast.forecastday[2].date.epoch*1000 | date:'EEE, MMM d'}}</font><br>  
+                        <img src="{{weatherResult.forecast.simpleforecast.forecastday[2].icon_url}}" class="img-rounded"> {{weatherResult.forecast.simpleforecast.forecastday[2].conditions}}<br> HI Temp: <span ng-if='isButPres===true'>{{weatherResult.forecast.simpleforecast.forecastday[2].high.celsius}}&deg;C</span><span ng-if='isButPres===false'>{{weatherResult.forecast.simpleforecast.forecastday[2].high.fahrenheit}}&deg;F</span><br>
+                        LOW Temp: <span ng-if='isButPres===true'>{{weatherResult.forecast.simpleforecast.forecastday[2].low.celsius}}&deg;C</span><span ng-if='isButPres===false'>{{weatherResult.forecast.simpleforecast.forecastday[2].low.fahrenheit}}&deg;F</span>       
+                      </p>
+                    </div> 
+                    <div class='col-md-4 forecastdivs'>
+                      <p class='forecastweathpar'>
+                        <font>{{weatherResult.forecast.simpleforecast.forecastday[3].date.epoch*1000 | date:'EEE, MMM d'}}</font><br>  
+                        <img src="{{weatherResult.forecast.simpleforecast.forecastday[3].icon_url}}" class="img-rounded"> {{weatherResult.forecast.simpleforecast.forecastday[3].conditions}}<br> HI Temp: <span ng-if='isButPres===true'>{{weatherResult.forecast.simpleforecast.forecastday[3].high.celsius}}&deg;C</span><span ng-if='isButPres===false'>{{weatherResult.forecast.simpleforecast.forecastday[3].high.fahrenheit}}&deg;F</span><br>
+                        LOW Temp: <span ng-if='isButPres===true'>{{weatherResult.forecast.simpleforecast.forecastday[3].low.celsius}}&deg;C</span><span ng-if='isButPres===false'>{{weatherResult.forecast.simpleforecast.forecastday[3].low.fahrenheit}}&deg;F</span>         
+                      </p>
+                    </div> 
+                </div> 
+            </div>  
+        </div>
+    </div>
+</div>
+    <!--the view area for the 'maincontroller' controller-->	
+    <div ng-controller='maincontroller'>
+        <!--here the value of weathstate variable will be retrieved from js file and it is used for expressions. Depending on the value of the weathstate different classes will be added to current div. This functionality is implemented with ng-class directive-->	
+        <div class='row main' ng-class='{"foggy": weathstate==="fog", "rainy": weathstate==="rain", "snowy": weathstate==="snow", "cloudy": weathstate==="cloud",  "dusty": weathstate==="dust", "clear": weathstate==="clear"}'>
+          <div class="col-md-6 col-md-offset-3 col-xs-6 col-xs-offset-3 text-center" ng-cloak>
+                <div class="col-md-12 form-group">  
+                    <p id='nameofapp'>Local Weather App</p>
+                    <!--interpolating data from json format-->	
+                    <p id='nameofcity'>{{weatherResult.current_observation.display_location.full}}</p> <br>
+                    <p id='weathconitpar'>
+                      <!--interpolating data from json format and turning it into readable date format-->	
+                      <font>{{weatherResult.current_observation.local_epoch*1000 | date:'EEE, MMM d'}}</font><br>  
+                      <img src="{{weatherResult.current_observation.icon_url}}" class="img-rounded">
+                      {{weatherResult.current_observation.weather}}, <span ng-if='isButPres===true'>
+                      <!--interpolating data from json format and showing/deleting the content of span depending on isButPres boolean var value. This functionality is implemented with ng-if directive-->	
+                      {{weatherResult.current_observation.temp_c}}&deg;C</span><span ng-if='isButPres===false'>{{weatherResult.current_observation.temp_f}}&deg;F</span>           
+                    </p>
+                  <!--ng-click is the same as onclick-->	
+                  <button class='btn btn-primary' ng-click='toggleBut()'><span class='forecastweathpar' ng-if='isButPres===true'>Fahrenheit</span><span class='forecastweathpar' ng-if='isButPres===false'>Celsius</span></button>
+                  <hr>
+                </div>
+                <!--here another 3 days forecasts created and applied just the same techniiques as described above-->	
+                <div class="col-md-12 qwe form-group">
+                    <div class='col-md-4 forecastdivs'>
+                      <p class='forecastweathpar'>
+                        <font>{{weatherResult.forecast.simpleforecast.forecastday[1].date.epoch*1000 | date:'EEE, MMM d'}}</font><br>  
+                        <img src="{{weatherResult.forecast.simpleforecast.forecastday[1].icon_url}}" class="img-rounded"> {{weatherResult.forecast.simpleforecast.forecastday[1].conditions}}<br> HI Temp: <span ng-if='isButPres===true'>{{weatherResult.forecast.simpleforecast.forecastday[1].high.celsius}}&deg;C</span><span ng-if='isButPres===false'>{{weatherResult.forecast.simpleforecast.forecastday[1].high.fahrenheit}}&deg;F</span><br>
+                        LOW Temp: <span ng-if='isButPres===true'>{{weatherResult.forecast.simpleforecast.forecastday[1].low.celsius}}&deg;C</span><span ng-if='isButPres===false'>{{weatherResult.forecast.simpleforecast.forecastday[1].low.fahrenheit}}&deg;F</span>
+                      </p>
+                    </div>
+                    <div class='col-md-4 forecastdivs'>
+                      <p class='forecastweathpar'>
+                        <font>{{weatherResult.forecast.simpleforecast.forecastday[2].date.epoch*1000 | date:'EEE, MMM d'}}</font><br>  
+                        <img src="{{weatherResult.forecast.simpleforecast.forecastday[2].icon_url}}" class="img-rounded"> {{weatherResult.forecast.simpleforecast.forecastday[2].conditions}}<br> HI Temp: <span ng-if='isButPres===true'>{{weatherResult.forecast.simpleforecast.forecastday[2].high.celsius}}&deg;C</span><span ng-if='isButPres===false'>{{weatherResult.forecast.simpleforecast.forecastday[2].high.fahrenheit}}&deg;F</span><br>
+                        LOW Temp: <span ng-if='isButPres===true'>{{weatherResult.forecast.simpleforecast.forecastday[2].low.celsius}}&deg;C</span><span ng-if='isButPres===false'>{{weatherResult.forecast.simpleforecast.forecastday[2].low.fahrenheit}}&deg;F</span>       
+                      </p>
+                    </div> 
+                    <div class='col-md-4 forecastdivs'>
+                      <p class='forecastweathpar'>
+                        <font>{{weatherResult.forecast.simpleforecast.forecastday[3].date.epoch*1000 | date:'EEE, MMM d'}}</font><br>  
+                        <img src="{{weatherResult.forecast.simpleforecast.forecastday[3].icon_url}}" class="img-rounded"> {{weatherResult.forecast.simpleforecast.forecastday[3].conditions}}<br> HI Temp: <span ng-if='isButPres===true'>{{weatherResult.forecast.simpleforecast.forecastday[3].high.celsius}}&deg;C</span><span ng-if='isButPres===false'>{{weatherResult.forecast.simpleforecast.forecastday[3].high.fahrenheit}}&deg;F</span><br>
+                        LOW Temp: <span ng-if='isButPres===true'>{{weatherResult.forecast.simpleforecast.forecastday[3].low.celsius}}&deg;C</span><span ng-if='isButPres===false'>{{weatherResult.forecast.simpleforecast.forecastday[3].low.fahrenheit}}&deg;F</span>         
+                      </p>
+                      <h1>{{weathstate}}</h1>
+                    </div> 
+                </div> 
+            </div>  
+        </div>
+    </div>
+	</div>
+    <script src='angularjs.js'></script>
+	</body>
+</html>

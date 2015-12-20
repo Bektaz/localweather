@@ -1,0 +1,100 @@
+.main{
+  width: 100vw;
+  height: 115vh;
+}
+@media (max-width: 992px) {
+    .main{
+        height: 130vh;
+    }  
+}
+@media (max-width: 800px) {
+    .main{
+        height: 150vh;
+    }  
+}
+/*classes below will be added/removed with the help of ng-class directive*/
+.foggy{  
+  background: url(http://s8.postimg.org/5ayrl9ao5/mistyweather.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.rainy{  
+  background: url(http://s17.postimg.org/9t4k261qn/rainy.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.snowy{
+  background: url(http://s16.postimg.org/t6xhlirf9/snowy.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.cloudy{
+  background: url(http://s7.postimg.org/cdwmtllob/cloydy.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.dusty{
+  background: url(http://s8.postimg.org/8gnyp7io5/dusty.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.clear{
+  background: url(http://s23.postimg.org/py36svbij/clear.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.text-center{
+  margin-top: 5%;
+  border: 1px solid black;
+  border-radius: 5%;
+  box-shadow: 0 0 15px;
+  -webkit-bbox-shadow: 0 0 15px;
+  -moz-box-shadow: 0 0 15px;
+  -o-box-shadow: 0 0 15px;
+}
+hr {
+    height: 1px;
+    background-color: #EEEEEE;
+}
+#nameofapp{
+  font-weight: bold;
+  font-size: 3vw;
+  color: #E3C336;/*#454542; */
+}
+#nameofcity{
+  font-weight: bold;
+  font-size: 2.5vw;
+  color: #E3C336;/*#454542; */
+}
+#weathconitpar{
+  font-weight: bold;
+  font-size: 1.7vw;
+  color: #E3C336;/*#454542; */
+}
+@media (max-width: 800px) {
+    #weathconitpar{
+        font-size: 3vw;
+    }  
+}
+.forecastweathpar{
+  font-weight: bold;
+  font-size: 1.3vw;
+  color: #E3C336;/*#eeeeee; */
+}
+@media (max-width: 800px) {
+    .forecastweathpar{
+        font-size: 2vw;
+    }  
+}
